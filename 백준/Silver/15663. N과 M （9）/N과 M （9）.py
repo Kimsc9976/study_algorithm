@@ -10,17 +10,15 @@ def NM(target):
   def bt(depth, is_used : list):
     nonlocal check, is_true
     if len(is_used) == M:
-      if ' '.join(map(str,is_used)) in check:
-        return
-      check.add(' '.join(map(str,is_used)))
       print(' '.join(map(str,is_used)))
       return
-    
+    remember = -1 
     for i in range(len(target)):
-      if (is_true[i] == False):
+      if (is_true[i] == False)or (remember == target[i]):
         continue
       is_true[i] = False
       is_used.append(target[i])
+      remember = target[i]
       bt(depth + 1, is_used)
       is_true[i] = True
       is_used.pop()
