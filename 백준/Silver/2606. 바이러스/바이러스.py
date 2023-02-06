@@ -13,28 +13,21 @@ for i in range(N):
     net[c2].add(c1)
     
 
-cnt = 0
-
-def bfs(warm):
+cnt = -1
+def dfs(warm):
     global cnt
     if is_passed[warm - 1] == True:
         return
-    
     if is_passed[warm - 1] == False:
-        if warm != 1:
-            cnt += 1
+        cnt += 1
         is_passed[warm - 1] = True
-    
-    
+        
     if net.get(warm):
         connected = list(net[warm])
     else:
         return
     
     for com in connected:
-        
-        
-        bfs(com)
-        
-bfs(1)
+        dfs(com)
+dfs(1)
 print(cnt)
