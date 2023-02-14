@@ -2,20 +2,20 @@ nanj = list()
 for _ in range(9):
     nanj += [int(input())]
 
-lst = []
-def dfs(depth, lst : list):
-    if depth == 7:
-        return True if sum(lst) == 100 else False
+trigger = False
+for i in range(9):
+    temp_i = nanj[i]
+    nanj.pop(i)
+    for j in range(8):
+        temp_j = nanj[j]
+        nanj.pop(j)
+        
+        if sum(nanj) == 100:
+            print(*sorted(nanj),sep='\n')
+            trigger = True
+            break
+        nanj.insert(j,temp_j)
     
-    for i in range(depth, len(nanj)):
-        if nanj[i] in lst: continue
-        
-        lst.append(nanj[i])
-        check = dfs(depth+1,lst)
-        if check == True :
-            return check
-        lst.pop()
-        
-
-dfs(0,lst)
-print(*sorted(lst),sep='\n')
+    if trigger :
+        break
+    nanj.insert(i,temp_i)
