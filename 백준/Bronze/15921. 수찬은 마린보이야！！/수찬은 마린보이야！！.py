@@ -1,2 +1,1 @@
-N = int(input())
-print("1.00") if N != 0 else print("divide by zero")
+print("1.00") if int(input()) != 0 else print("divide by zero")
