@@ -1,33 +1,30 @@
-from collections import deque
-parent = dict()
+import sys
+sys.setrecursionlimit(10000000)
 
-def bfs(start):
-    que = deque()
-    que.append(start)
-    while que:
-        now = que.popleft()
-        if is_visited[now] : continue   # 두번 연산 되는 것을 계속 까먹음;; -> 이렇게 해서 방지
-        is_visited[now] = True
-        for item in nodes[now]:
-            if is_visited[item] == True: continue
-            parent[item] = now ## 각노드들의 부모노드를 저장해주면 
-            que.append(item)
-
-## 이번문제는 탐색 문제로 Root 노드를 1이라 가정을 하였을 때 각 노드들에 대한 
-## 부모노드를 찾는 문제
-## 1번 노드를 기준으로 탐색을 시작을 해서 is_visited를 활용하여 이전에 탐색한
-## 노드들을 지우게 되면 이것은 부모를 탐색한 것과 같은 것이다.
-## 따라서 탐색을 진행하고 나서 -- 해주면, 결과를 출력해 줄 수 있다. 
 N = int(input())
+rlt = [list(map(int,input().split())) for i in range(N-1)]
 
-is_visited = [False for _ in range(N+1)]
-nodes = [list() for _ in range(N+1)]
+nodes = [list() for o in range(N+1)]
 for i in range(N-1):
-    s, e = map(int,input().split())
-    nodes[s].append(e)
-    nodes[e].append(s)
-bfs(1)
+    nodes[rlt[i][0]].append(rlt[i][1])
+    nodes[rlt[i][1]].append(rlt[i][0])
+is_traveled = [False for _ in range(N+1)]
+ans = [0 for _ in range(N+1)]
+def inorder(v):
+    # if v= 1 일 겨우에는 -> 6번하고 4번이
+    # if v= 6 일 경우에는 -> 1하고 3 // 아니? 1은 부모아니였어?
+    for node in nodes[v]: # -> 모르겠으니까 for문을 돌린거야
+        if is_traveled[node] == True:
+            continue
+        is_traveled[node] = True
+        inorder(node) # -> 6번하고 4번 탐색 할 수 있겠찌
+        # 우리가 원하는 수식 == 이친구의 부모 노드가 뭐야!!!
+        # 이곳에서 우리는 알 수 있다!
+        ans[node] = v
+
     
-n = sorted(list(parent.items()),key= lambda x: x[0])
-for key, value in n:
-    print(value)
+is_traveled[1] = True
+inorder(1)
+    
+for idx in range(2,N+1):
+    print(ans[idx])
