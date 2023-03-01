@@ -16,13 +16,12 @@ def solution(row, col, size):
   if checker(row, col, size):
     ans[pap[row][col]] += 1
     return
-  
-  nodes = []
+
   n_size = size//3  
   for i in range(3):
     for j in range(3):
-      node = (row + i * n_size, col + j * n_size, n_size)
-      nodes.append(node)
+      # node = (row + i * n_size, col + j * n_size, n_size)
+      solution(row + i * n_size, col + j * n_size, n_size)
   # node1 = (row, col, n_size)
   # node2 = (row, col + n_size , n_size)
   # node3 = (row, col + 2 * n_size , n_size)
@@ -31,11 +30,7 @@ def solution(row, col, size):
   # node6 = (row + n_size, col + 2 * n_size , n_size)
   # node7 = (row + 2 * n_size, col, n_size)
   # node8 = (row + 2 * n_size, col + n_size , n_size)
-  # node9 = (row + 2 * n_size, col + 2 * n_size , n_size)
-  
-  for node in nodes:
-    r, c, s = node
-    solution(r, c, s)
+  # node9 = (row + 2 * n_size, col + 2 * n_size , n_size)  
 
 
 solution(0,0,N)
