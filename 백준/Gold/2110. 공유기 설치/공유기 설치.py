@@ -14,8 +14,9 @@ if C == 2:
     print(length)
 else:
     ans = length
+    end = length //(C-1)
     while start <= end:
-        mid = (start + end) // 2
+        mid = (start + end) // 2 ## 왜 사람들이 거리차이를 start하고 end로 뒀을까
         curr = arr[0]
         count = 1
 
