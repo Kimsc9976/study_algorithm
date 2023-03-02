@@ -5,16 +5,15 @@ arr = [int(input()) for _ in range(N)]
 arr.sort()
 is_travel = [False for _ in range(N)]
 
-
-start = 1
-end = arr[N - 1]
-length = end - arr[0]
+length = arr[N - 1] - arr[0]
 
 if C == 2:
     print(length)
 else:
     ans = length
-    end = length //(C-1)
+
+    start = 0
+    end = length //(C-1)        ## 가능한 최대 거리는 평균거리이다.
     while start <= end:
         mid = (start + end) // 2 ## 왜 사람들이 거리차이를 start하고 end로 뒀을까
         curr = arr[0]
