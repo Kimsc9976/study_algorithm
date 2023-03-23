@@ -4,6 +4,8 @@ N = int(input())
 
 lst = list(map(int,input().split()))
 ans = 0
+
+# 원소가 이동하는 부분을 오른쪽에서 왼쪽으로 이동하는 것을 보고 count할 수 있다.
 def margesort(start, end):
     global ans
     if not(start < end):
@@ -21,9 +23,9 @@ def margesort(start, end):
         r_now = _right[0]
 
         if l_now <= r_now:
-            rlt.append(_left.popleft())
+            rlt.append(_left.popleft()) # 왼쪽에 있는 원소를 옮김 <- count 필요없음
         else:
-            rlt.append(_right.popleft())
+            rlt.append(_right.popleft()) # 오른쪽에 있는 원소를 옮김 <- 왼쪽의 원소 수 만큼 count
             ans += len(_left)
         
     if _left:
