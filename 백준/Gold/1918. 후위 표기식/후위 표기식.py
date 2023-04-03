@@ -4,7 +4,7 @@ def prec(n):
     elif(n == '+' or n == '-'):
         return 1
     elif(n == '*' or n == '/'):
-        return 2
+        return 2 
 
 #식 입력
 calculation = input()
