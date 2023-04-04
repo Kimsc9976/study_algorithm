@@ -43,17 +43,17 @@ time = 0
 trigger = None
 
 while is_ice():
-    X = False
+    
+
+
     ices = []
     is_visited = [[False for _ in range(M)] for _ in range(N)]
 
     melting = dict()
 
-    cnt = 0
     for i in range(N):
         for j in range(M):
-            if matrix[i][j] != 0 and not is_visited[i][j] and cnt == 0:
-                cnt += 1
+            if matrix[i][j] != 0 and not is_visited[i][j]:
                 targets = bfs((i,j))
                 
                 for a, b in targets:
@@ -64,12 +64,12 @@ while is_ice():
                         if matrix[na][nb] == 0:
                             t += 1
                     melting[(a,b)] = t
-            elif matrix[i][j] != 0 and not is_visited[i][j] and cnt == 1:
-                X = True
-                break
+
                 ices.append(targets)
-        if X: break
-    if X : break
+    
+    if len(ices) >= 2:
+        break
+
     time += 1
 
     for a, b in melting:
