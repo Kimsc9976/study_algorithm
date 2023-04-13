@@ -7,7 +7,10 @@ def dijkstra(start, end):
 
     while heap:
         check, i = heapq.heappop(heap)
-
+        
+        if d[i] < check: # 가중치가 큰 값의 정보는 무시한다.
+            continue
+            
         if i == end:
             return d[end]
 
