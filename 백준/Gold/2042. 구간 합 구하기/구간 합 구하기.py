@@ -1,7 +1,11 @@
+import math 
+
 N, M, K = map(int,input().split())
 
 lst = [0] + [int(input()) for _ in range(N)]
-segment_tree = [0]*(N*4)
+segment_tree = [0]*(4*N) # 세그먼트 트리에 필요한 노드의 개수는 최악의 경우 N개
+# 일반적으로 perfect binary tree 형태를 바탕으로 노드를 만들게 되는데, 그렇게 되면
+# 2*2^k 개가 나온다. 이 때, 2^k의 범위는 n<= < 2N 이므로 편의상 4*N으로 본다,
 
 # 1. 세그먼트 트리 트리 만들기
 def tree(start, end, index):
