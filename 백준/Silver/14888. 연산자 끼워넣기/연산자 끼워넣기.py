@@ -1,5 +1,3 @@
-import math
-
 N = int(input())
 numbers = list(map(int, input().split()))
 oper = list(map(int, input().split()))
@@ -8,7 +6,7 @@ min = +1e9
 max = -1e9
 
 def devide(a,b):
-  rlt = math.floor(a//b) if a*b >= 0 else - math.floor(abs(a)//abs(b))
+  rlt = int(a//b) if a*b >= 0 else -1 * int(abs(a)//abs(b))
   return rlt
 
 
@@ -16,9 +14,9 @@ def dfs(i, compare):
     global oper, min, max # 전역변수 등록해야 업데이트 됨
     if(sum(oper) == 0):
         if(compare > max):
-            max = compare
+            max = int(compare)
         if(compare<min):
-            min = compare
+            min = int(compare)
         return
     
     if(oper[0]>0):
@@ -42,5 +40,5 @@ def dfs(i, compare):
         oper[3] += 1    
 
 dfs(1,numbers[0])
-print(max)
-print(min)
+print(int(max))
+print(int(min))
