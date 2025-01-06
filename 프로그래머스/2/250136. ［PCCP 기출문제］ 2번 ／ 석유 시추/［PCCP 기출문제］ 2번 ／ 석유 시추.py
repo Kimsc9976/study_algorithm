@@ -47,18 +47,18 @@ def solution(land):
     
     oils = list()
     
+    dig = [0 for _ in range(M)]
     
-    for m in range(M):     
+    for m in range(M):
+                
         for n in range(N):
             if not land[n][m] : continue
+            
             oils.append(bfs(n, m, land))
-
-    
-    dig = [0 for _ in range(M)]
     
     for oil, count in oils:
         sc, ec = oil
         for i in range(sc, ec+1):
             dig[i] += count
-    
+
     return max(dig)
