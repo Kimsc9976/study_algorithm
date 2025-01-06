@@ -19,7 +19,7 @@ def bfs(sr, sc, land):
         for dr, dc in d:
             nr = r + dr
             nc = c + dc
-            
+             
             if nr < 0 or nc < 0 or nr >= N or nc >= M: continue
             if not land[nr][nc] : continue
             
@@ -38,26 +38,28 @@ M = None
 def solution(land):
     global N, M
     answer = 0
-    
-    N = len(land)
-    M = len(land[0])
+     # 이차원배열인데
+    N = len(land) # 행의길이 
+    M = len(land[0]) #열의 길이
     
     # for row in land:
     #     print(*row)
     
+    
+    
+    
+    
     oils = list()
-    
-    dig = [0 for _ in range(M)]
-    
     for m in range(M):
-                
         for n in range(N):
             if not land[n][m] : continue
+            count = bfs(n, m, land)
+            oils.append(count)
             
-            oils.append(bfs(n, m, land))
-    
+    dig = [0 for _ in range(M)]
     for oil, count in oils:
         sc, ec = oil
+        
         for i in range(sc, ec+1):
             dig[i] += count
 
