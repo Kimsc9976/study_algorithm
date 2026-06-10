@@ -45,3 +45,5 @@ def solution(s):
             stack.append(c)
     
     return 1 if len(stack) == 0 else 0 # stack에 남은게 없으면 1 있으면 0 출력하기
+# 더 많은 코드들은...
+# https://kimsc9976.github.io/algorithm/프로그래머스/
